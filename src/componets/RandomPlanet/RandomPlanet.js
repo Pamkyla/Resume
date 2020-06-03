@@ -2,6 +2,7 @@ import React from 'react';
 
 import SwapiService from '../../services/SwapiService'
 import './RandomPlanet.css';
+import Loader from '../Loader';
 
 export default class RandomPlanet extends React.Component{
 
@@ -13,33 +14,39 @@ export default class RandomPlanet extends React.Component{
     swapi = new SwapiService();
 
     state = {
-        name: null,
-        diameter: null,
-        population: null,
-        gravity: null
+       planet: {},
+       load: true,
     }
 
+    onPlanetLoaded = (planet) => {
+        this.setState({
+            planet,
+            load: false,
+        });
+    }
+
+
     updatePlanet() {
-        this.swapi.getPlanet(4).then((planet) => {
-            this.setState({
-                name: planet.name,
-                diameter: planet.diameter,
-                population: planet.population,
-                gravity: planet.gravity
-            })
-            
-        }) ;
+        this.swapi.getAllPeople();
+        const id = Math.round(Math.random()*25);
+        this.swapi.getPlanet(id)
+            .then(this.onPlanetLoaded);
+
     }
 
     render() {
         
-        const {name, diameter, population, gravity} = this.state;
+        const { planet: {name, diameter, population, gravity, id, load}} = this.state;
+
+        if (load) {
+            return <Loader />;
+        }
 
         return(
             <div className="RandomPlanet">
             <h3>{name}</h3>
             <div className="d-flex planet_block">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRCUuHd6YhII17P3uNGa8cVgLutlPBth7aN8Smn4sRk9fEiC5FE&usqp=CAU" alt="planet"/>
+                <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="planet"/>
                 <ul className="planet_info_block">
                     <li>
                         <span>diameter</span>
@@ -56,6 +63,6 @@ export default class RandomPlanet extends React.Component{
                 </ul>
             </div>
         </div>
-        );
+        );  
     }
 }
