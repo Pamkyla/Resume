@@ -2,14 +2,13 @@ import React from 'react';
 
 import './ErrorComponent.css';
 
-import errorIcon from 'E:\\img\\miy.jpg';
+import errorIcon from './star-wars.png';
 
 const ErrorComponent = () => {
     return (
         <div className="ErrorComponent">
             <img src={errorIcon} alt="error icon" />
-            <p>Auf</p>
-            <p>Meow</p>
+            <p>Resistance will be destroyed</p>
         </div>
     );
 }

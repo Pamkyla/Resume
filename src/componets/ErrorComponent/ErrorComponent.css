@@ -8,5 +8,5 @@
 }
 
 .ErrorComponent img {
-    min-width: 70px;
+    max-width: 70px;
 }

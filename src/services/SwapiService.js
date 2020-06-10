@@ -36,13 +36,11 @@ export default class SwapiService {
             name: person.name,
             gender: person.gender,
             mass: person.mass,
-            homeworld: person.homeworld
+            birthDate: person.birth_year
         }
     }
 
     transformPlanet(planet) {
-        const id = planet.url.match(/\/([0-9]*)\/$/)[1];
-
         return {
             id: this.getId(planet),
             name: planet.name,

@@ -7,34 +7,32 @@ import ErrorComponent from '../ErrorComponent'
 
 export default class RandomPlanet extends React.Component{
 
-    constructor() {
-        super();
-        
-    }
-
     swapi = new SwapiService();
 
     state = {
-       planet: {},
-       load: true,
-       error: false,
+        planet: {},
+        load: true,
+        error: false,
     }
 
     componentDidMount() {
         this.updatePlanet();
-        setInterval(this.updatePlanet, 2000);
+       this.interval = setInterval(this.updatePlanet, 5000);
     }
 
     componentWillUnmount() {
-        
+        clearInterval(this.interval);
     }
+
+    componentDidCatch 
 
     onError = () => {
         this.setState({
             error: true,
+            load: false,
         });
     }
-    
+
     onPlanetLoaded = (planet) => {
         this.setState({
             planet,
@@ -42,26 +40,22 @@ export default class RandomPlanet extends React.Component{
         });
     }
 
-
-    updatePlanet() {
-        this.swapi.getAllPeople();
+    updatePlanet = () => {
         const id = Math.round(Math.random()*25);
         this.swapi.getPlanet(id)
-            .then(this.onPlanetLoaded);
-
+            .then(this.onPlanetLoaded)
+            .catch(this.onError);
     }
 
     render() {
-        
-        const { planet, load, error} = this.state;
+        const { planet, load, error } = this.state;
+
         const errorContent = error ? <ErrorComponent /> : null;
         const loader = load ? <Loader /> : null;
-        const content = (!load && !error) 
-            ? <PlanetView planetProps={planet} /> : null ;
+        const content = (!load && !error)
+            ? <PlanetView planet={planet} /> : null;
 
-       
-
-        return(
+        return (
             <div className="RandomPlanet">
                 {errorContent}
                 {loader}
@@ -72,12 +66,12 @@ export default class RandomPlanet extends React.Component{
 }
 
 const PlanetView = (props) => {
-    const {id, name, diameter, population, gravity} = planet;
+    const { id, name, diameter, population, gravity } = props.planet;
     return (
         <>
             <h3>{name}</h3>
             <div className="d-flex planet_block">
-                <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="planet"/>
+                <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="planet" />
                 <ul className="planet_info_block">
                     <li>
                         <span>diameter</span>
