@@ -8,12 +8,26 @@ import ItemsList from '../ItemsList';
 import DetailsInfo from '../DetailsInfo';
 
 
-const App = () => {
+export default class App  extends React.Component {
 
+    state = {
+        isRandomPlanet: true,
+    }
+
+    onTogglePlanet =() => {
+        this.setState((prevState) => {
+            return {isRandomPlanet: !prevState.isRandomPlanet}
+    })
+    }
+render (){
+    
     return(
         <div className="App">
             <Header />
-            <RandomPlanet />
+            {this.state.isRandomPlanet && <RandomPlanet />}
+            <button onClick={this.onTogglePlanet}>
+                on/off planet
+            </button>
             <div className="d-flex">
                 <ItemsList />
                 <DetailsInfo />
@@ -21,5 +35,5 @@ const App = () => {
         </div>
     )
 }
+}
 
-export default App;
