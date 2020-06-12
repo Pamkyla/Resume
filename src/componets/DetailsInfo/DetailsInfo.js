@@ -1,6 +1,7 @@
 import React from 'react';
 
-import './DetailsInfo.css'
+import './DetailsInfo.css';
+import ErrorTest from '../ErrorTest';
 import SwapiService from '../../services/SwapiService';
 
 export default class DetailsInfo extends React.Component {
@@ -59,6 +60,7 @@ export default class DetailsInfo extends React.Component {
                         </li>
                     </ul>
                 </div>
+                <ErrorTest />
             </div>
         );    
     }

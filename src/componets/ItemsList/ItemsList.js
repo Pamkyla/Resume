@@ -1,59 +1,54 @@
 import React from 'react';
 
 import './ItemsList.css';
-import SwapiService from '../../services/SwapiService';
-import Loader from '../Loader'
-
+import Loader from '../Loader';
 
 export default class ItemsList extends React.Component {
 
-    swapi = new SwapiService();
-
     state = {
-        people: null, 
-
+        item: null
     }
 
     componentDidMount() {
-        this.swapi.getAllPeople().then((people) => {
-                this.setState({
-                    people
-                })
-            }); 
+        this.props.getData().then((item) => {
+            this.setState({
+                item
+            })
+        });
     }
 
     componentDidUpdate// сразу после обновления объекта (новое св-во или вызвал setState).Первая инициализация компонента не считается обновлением
 
     renderItems(arr) {
         return arr.map((item) => {
+            const text = this.props.renderItem(item)
             return (
-                <li 
-                    className="list-group-item"
+                <li
+                    className="Item list-group-item"
                     key={item.id}
                     onClick={() => this.props.onItemClick(item.id)}
                 >
-                    {item.name}
+                    {text}
                 </li>
             )
         });
-
     }
 
-    render () {
-         
-        const { people } = this.state;
+    render() {
 
-        if (!people) {
+        const { item } = this.state;
+
+        if (!item) {
             return <Loader />;
         }
 
-        const items = this.renderItems(people); 
+        const items = this.renderItems(item);
 
-    return(
-        <ul className="ItemsList">
-            {items}
-        </ul>
-    );
-}
+        return (
+            <ul className="ItemsList">
+                {items}
+            </ul>
+        );
+    }
 
 }
