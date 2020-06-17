@@ -1,69 +1,58 @@
 import React from 'react';
 
+
 import './App.css';
 
 import Header from '../Header';
 import RandomPlanet from '../RandomPlanet';
-
-import ErrorTest from '../ErrorTest'
+import ErrorTest from '../ErrorTest';
 import ErrorComponent from '../ErrorComponent';
 import PeoplePage from '../PeoplePage';
 import SwapiService from '../../services/SwapiService';
-import ItemsList from '../ItemsList';
-import DetailsInfo from '../DetailsInfo';
+import PlanetPage from '../PlanetPage';
+import { SwapiProvaider } from '../SwapiServiceContext';
+
+/* 
+context - <del> proprty drill </del>.
+
+1. Provider - setup
+2. Consumer - count
+
+*/
 
 export default class App extends React.Component {
 
-    swapi = new SwapiService;
+    swapi = new SwapiService();
 
     state = {
-        isRandomPlanet: true,
-        selectedPerson: null,
-        error: false
+        error: false,
     }
 
     componentDidCatch() {
-        this.setState({
-            error: true
-        })
-
+        this.setState({ error: true });
     }
 
     onTogglePlanet = () => {
         this.setState((prevState) => {
-            return { isRandomPlanet: !prevState.isRandomPlanet }
-        })
+            return {isRandomPlanet: !prevState.isRandomPlanet,}
+        });
     }
 
     render() {
-
         if (this.state.error) {
             return <ErrorComponent />
         }
 
         return (
+            <SwapiProvaider value={this.swapi}>
             <div className="App">
                 <Header />
-                {this.state.isRandomPlanet && <RandomPlanet />}
-                <button onClick={this.onTogglePlanet}>
-                    on/off planet
-            </button>
+                <RandomPlanet />
                 <ErrorTest />
                 <PeoplePage />
-                <div className="d-flex PeoplePage">
-                <ItemsList 
-                    onItemClick={this.onPersonSelect} 
-                    getData={this.swapi.getAllPlanet}
-                    renderItem={(item) => 
-                        `${item.name}
-                            (diameter ${item.diameter})`}
-                />
-                <DetailsInfo
-                    personId={this.state.selectedPerson}
-                />
+                <PlanetPage />
             </div>
-            </div>
+            </SwapiProvaider>
         )
     }
 }
-

@@ -1,48 +1,31 @@
 import React from 'react';
 
 import './ItemsList.css';
-import Loader from '../Loader';
 
-export default class ItemsList extends React.Component {
+import SwapiService from '../../services/SwapiService'
+import withData from '../helpers/withData';
 
-    state = {
-        item: null
-    }
+const ItemsList = (props) => {
+    
+    const { data, onItemClick, renderItem } = props;
 
-    componentDidMount() {
-        this.props.getData().then((item) => {
-            this.setState({
-                item
-            })
-        });
-    }
-
-    componentDidUpdate// сразу после обновления объекта (новое св-во или вызвал setState).Первая инициализация компонента не считается обновлением
-
-    renderItems(arr) {
+    const renderItems = (arr) => {
         return arr.map((item) => {
-            const text = this.props.renderItem(item)
+            const text = renderItem(item);
             return (
                 <li
                     className="Item list-group-item"
                     key={item.id}
-                    onClick={() => this.props.onItemClick(item.id)}
+                    onClick={() => onItemClick(item.id)}
                 >
                     {text}
                 </li>
-            )
+            );
         });
     }
 
-    render() {
 
-        const { item } = this.state;
-
-        if (!item) {
-            return <Loader />;
-        }
-
-        const items = this.renderItems(item);
+        const items = renderItems(data);
 
         return (
             <ul className="ItemsList">
@@ -50,5 +33,5 @@ export default class ItemsList extends React.Component {
             </ul>
         );
     }
-
-}
+    const { getAllPeople } = new SwapiService();
+    export default withData(ItemsList, getAllPeople);
