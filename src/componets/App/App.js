@@ -10,7 +10,8 @@ import ErrorComponent from '../ErrorComponent';
 import PeoplePage from '../PeoplePage';
 import SwapiService from '../../services/SwapiService';
 import PlanetPage from '../PlanetPage';
-import { SwapiProvaider } from '../SwapiServiceContext';
+import SwapiContext from '../SwapiServiceContext';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 /* 
 context - <del> proprty drill </del>.
@@ -18,7 +19,9 @@ context - <del> proprty drill </del>.
 1. Provider - setup
 2. Consumer - count
 
+Roating - переключение между виртуальными страницами приложениъэъ
 */
+
 
 export default class App extends React.Component {
 
@@ -42,17 +45,29 @@ export default class App extends React.Component {
         if (this.state.error) {
             return <ErrorComponent />
         }
-
+        
         return (
-            <SwapiProvaider value={this.swapi}>
+            
+            <SwapiContext.Provider value={this.swapi}>
+            <Router>
             <div className="App">
                 <Header />
                 <RandomPlanet />
                 <ErrorTest />
-                <PeoplePage />
-                <PlanetPage />
+                <Route path="/" exact>
+                    <h3>Welcome to the rise field...</h3>
+                </Route>
+                <Route path="/people/">
+                    <h3>People</h3> 
+                    <PeoplePage />
+                </Route>
+                <Route path="/planets/">
+                    <h3>Planet</h3>
+                    <PlanetPage />
+                </Route>
             </div>
-            </SwapiProvaider>
+            </Router>
+            </SwapiContext.Provider>
         )
     }
 }

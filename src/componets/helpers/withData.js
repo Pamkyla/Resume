@@ -2,13 +2,15 @@ import React from 'react';
 import Loader from '../Loader';
 
 
-const withData = (View, getData) => {  // <-- HOC
+const withData = (ItemsList, getData) => {  // <-- HOC
+    console.log(getData);
+    
+    
     return class extends React.Component{
-
+         
     state = {
         data: null
     }
-
         componentDidMount() {
             getData().then((data) => {
                 this.setState({
@@ -16,14 +18,18 @@ const withData = (View, getData) => {  // <-- HOC
                 })
             });
         }
-
-        render() {
-            const { data } = this.state;
             
+        render() {
+            
+            
+            
+            const { data } = this.state;
+   
         if (!data) {
             return <Loader />;
         }
-            return <View { ... this.props } data={data} />;
+            
+            return <ItemsList { ... this.props } data={data} />;
         }
     }
         

@@ -11,20 +11,42 @@ import Row from '../Row';
 export default class PlanetPage extends React.Component {
 
     swapi = new SwapiService();
-
+    detailsInf = new DetailsInfo();
     state = {
-        selectedPerson: null,
+        selectedPlanet: null,
         error: false,
     }
 
     componentDidCatch() {
         this.setState({ error: true });
+        
+        
     }
 
-    onPersonSelect = (id) => {
+    onPlanetSelect = (id) => {
         this.setState({
-            selectedPerson: id
+            selectedPlanet: id
         });
+    }
+
+    detailPlanetList = (diameter, population, gravity) => {
+
+        return (
+            <>
+                <li>
+                    <span>diameter</span>
+                    <span>{diameter}</span>
+                </li>
+                <li>
+                    <span>population</span>
+                    <span>{population}</span>
+                </li>
+                <li>
+                    <span>gravity</span>
+                    <span>{gravity}</span>
+                </li>
+            </>
+        )
     }
 
     render() {
@@ -34,7 +56,8 @@ export default class PlanetPage extends React.Component {
 
         const itemsList = (
             <ItemsList
-                onItemClick={this.onPersonSelect}
+                getData={this.swapi.getAllPlanet}
+                onItemClick={this.onPlanetSelect}
                 renderItem={(item) =>
                     `${item.name}
                         (${item.diameter})`
@@ -44,13 +67,16 @@ export default class PlanetPage extends React.Component {
 
         const detailsInfo = (
             <DetailsInfo
-                personId={this.state.selectedPerson}
+                category='planets'
+                getDetailedData={this.swapi.getPlanet}
+                id={this.state.selectedPlanet}
+                detailList={this.detailPlanetList}
             />
         );
 
         return (
             <div className="PlanetPage">
-               <Row left={itemsList} right={detailsInfo} />
+                <Row left={itemsList} right={detailsInfo} />
             </div>
         )
     }

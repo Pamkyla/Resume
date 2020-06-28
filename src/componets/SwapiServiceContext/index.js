@@ -1,3 +1,3 @@
-import { SwapiProvaider, SwapiConsumer } from './SwapiServiceContext';
+import SwapiContext from './SwapiServiceContext';
 
-export { SwapiProvaider, SwapiConsumer };
+export default SwapiContext;

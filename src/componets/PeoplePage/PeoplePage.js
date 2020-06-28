@@ -7,7 +7,6 @@ import ErrorComponent from '../ErrorComponent';
 import SwapiService from '../../services/SwapiService';
 import Row from '../Row';
 
-
 export default class PeoplePage extends React.Component {
 
     swapi = new SwapiService();
@@ -27,6 +26,26 @@ export default class PeoplePage extends React.Component {
         });
     }
 
+    detailPeopleList = (mass, birthDate, gender) => {
+
+        return (
+            <>
+                <li>
+                    <span>mass</span>
+                    <span>{mass}</span>
+                </li>
+                <li>
+                    <span>birth date</span>
+                    <span>{birthDate}</span>
+                </li>
+                <li>
+                    <span>gender</span>
+                    <span>{gender}</span>
+                </li>
+            </>
+        )
+    }
+    
     render() {
         if (this.state.error) {
             return <ErrorComponent />
@@ -34,6 +53,7 @@ export default class PeoplePage extends React.Component {
 
         const itemsList = (
             <ItemsList
+                getData={this.swapi.getAllPeople}
                 onItemClick={this.onPersonSelect}
                 renderItem={(item) =>
                     `${item.name}
@@ -44,13 +64,16 @@ export default class PeoplePage extends React.Component {
 
         const detailsInfo = (
             <DetailsInfo
-                personId={this.state.selectedPerson}
+                category='characters'
+                getDetailedData={this.swapi.getPerson}
+                id={this.state.selectedPerson}
+                detailList={this.detailPeopleList}
             />
         );
 
         return (
             <div className="PeoplePage">
-               <Row left={itemsList} right={detailsInfo} />
+                <Row left={itemsList} right={detailsInfo} />
             </div>
         )
     }

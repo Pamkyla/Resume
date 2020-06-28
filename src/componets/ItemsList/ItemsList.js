@@ -2,36 +2,65 @@ import React from 'react';
 
 import './ItemsList.css';
 
-import SwapiService from '../../services/SwapiService'
-import withData from '../helpers/withData';
+import Loader from '../Loader';
 
-const ItemsList = (props) => {
+
+
+
+
+class ItemsList extends React.Component{
     
-    const { data, onItemClick, renderItem } = props;
+    state = {
+        data: null
+    }
 
-    const renderItems = (arr) => {
-        return arr.map((item) => {
-            const text = renderItem(item);
-            return (
-                <li
-                    className="Item list-group-item"
-                    key={item.id}
-                    onClick={() => onItemClick(item.id)}
-                >
-                    {text}
-                </li>
-            );
+    constructor(props) {
+        super(props);
+        const { getData } = props;
+          
+        getData().then((data) => {
+            this.setState({
+                data
+            })
         });
     }
+    
+render() {     
+            const { data } = this.state;
+            const { onItemClick, renderItem } = this.props;
+
+            if (!data) {
+                return <Loader />;
+            }
+        
+            const renderItems = (arr) => {
+            
+                return arr.map((item) => {
+                    const text = renderItem(item);
+                    return (
+                        <li
+                            className="Item list-group-item"
+                            key={item.id}
+                            onClick={() => onItemClick(item.id)}
+                        >
+                            {text}
+                        </li>
+                    );
+                });
+            }
+
+            const items = renderItems(data);
+
+            return (
+                <ul className="ItemsList">
+                    {items}
+                </ul>
+            );
+        }
+
+    
+}
 
 
-        const items = renderItems(data);
 
-        return (
-            <ul className="ItemsList">
-                {items}
-            </ul>
-        );
-    }
-    const { getAllPeople } = new SwapiService();
-    export default withData(ItemsList, getAllPeople);
+export default ItemsList;
