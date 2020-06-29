@@ -16,7 +16,7 @@ export default class SwapiService {
         const response = await this.getData('/people/');
         return response.results.map(this.transformPerson);
     }
-     getPerson = async (id) => {
+    getPerson = async (id) => {
         const person = await this.getData(`/people/${id}/`);
         return this.transformPerson(person);
     }
@@ -30,9 +30,29 @@ export default class SwapiService {
         return this.transformPlanet(planet);
     }
 
+    getAllShips = async () => {
+        const response = await this.getData('/starships/');
+        return response.results.map(this.transformShip);
+    }
+    getShip = async (id) => {
+        const ship = await this.getData(`/starships/${id}/`);
+        return this.transformShip(ship);
+    }
 
     getId(item) {
         return item.url.match(/\/([0-9]*)\/$/)[1];
+    }
+
+
+    transformShip = (ship) => {
+        return {
+            id: this.getId(ship),
+            name: ship.name,
+            cost: ship.cost_in_credits,
+            crew: ship.crew,
+            hyperdrive: ship.hyperdrive_rating,
+            model: ship.model
+        }
     }
 
     transformPlanet = (planet) => {

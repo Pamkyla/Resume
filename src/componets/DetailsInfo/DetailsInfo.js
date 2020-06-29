@@ -39,7 +39,7 @@ export default class DetailsInfo extends React.Component {
         if (!this.state.person) {
             return <p>please, select person</p>
         }
-        const { id, name, mass, birthDate, gender, diameter, population, gravity } = this.state.person;
+        const { id, name, mass, birthDate, gender, diameter, population, gravity, cost, crew, hyperdrive } = this.state.person;
         
         const { category, detailList } = this.props;
         
@@ -50,7 +50,7 @@ export default class DetailsInfo extends React.Component {
                 <div className="d-flex info_block">
                     <img src={`https://starwars-visualguide.com/assets/img/${category}/${id}.jpg`} alt="person" />
                     <ul className="detail_info_block">
-                        {detailList(mass||diameter, birthDate||population, gender||gravity)}
+                        {detailList(mass||diameter||cost, birthDate||population||crew, gender||gravity||hyperdrive)}
                     </ul>
                 </div>
                 <ErrorTest />

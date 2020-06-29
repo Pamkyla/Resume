@@ -41,7 +41,10 @@ export default class RandomPlanet extends React.Component{
     }
 
     updatePlanet = () => {
-        const id = Math.round(Math.random()*25);
+        let id = Math.round(Math.random()*25);
+        if (id===0) {
+            id++;
+        }
         this.swapi.getPlanet(id)
             .then(this.onPlanetLoaded)
             .catch(this.onError);
@@ -71,7 +74,7 @@ const PlanetView = (props) => {
         <>
             <h3>{name}</h3>
             <div className="d-flex planet_block">
-                <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="planet" />
+                <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="planet"/>
                 <ul className="planet_info_block">
                     <li>
                         <span>diameter</span>

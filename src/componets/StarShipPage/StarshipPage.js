@@ -2,18 +2,18 @@ import React from 'react';
 
 import ItemsList from '../ItemsList';
 import DetailsInfo from '../DetailsInfo';
-import './PlanetPage.css';
+import './StarshipPage.css';
 import ErrorComponent from '../ErrorComponent';
 import SwapiService from '../../services/SwapiService';
 import Row from '../Row';
 
 
-export default class PlanetPage extends React.Component {
+export default class StarshipPage extends React.Component {
 
     swapi = new SwapiService();
-
+    
     state = {
-        selectedPlanet: null,
+        selectedShip: null,
         error: false,
     }
 
@@ -23,27 +23,27 @@ export default class PlanetPage extends React.Component {
         
     }
 
-    onPlanetSelect = (id) => {
+    onShipSelect = (id) => {
         this.setState({
-            selectedPlanet: id
+            selectedShip: id
         });
     }
 
-    detailPlanetList = (diameter, population, gravity) => {
+    detailShipList = (cost, crew, hyperdrive) => {
 
         return (
             <>
                 <li>
-                    <span>diameter</span>
-                    <span>{diameter}</span>
+                    <span>cost in credits</span>
+                    <span>{cost}</span>
                 </li>
                 <li>
-                    <span>population</span>
-                    <span>{population}</span>
+                    <span>crew</span>
+                    <span>{crew}</span>
                 </li>
                 <li>
-                    <span>gravity</span>
-                    <span>{gravity}</span>
+                    <span>hyperdrive rating</span>
+                    <span>{hyperdrive}</span>
                 </li>
             </>
         )
@@ -56,26 +56,26 @@ export default class PlanetPage extends React.Component {
 
         const itemsList = (
             <ItemsList
-                getData={this.swapi.getAllPlanet}
-                onItemClick={this.onPlanetSelect}
+                getData={this.swapi.getAllShips}
+                onItemClick={this.onShipSelect}
                 renderItem={(item) =>
                     `${item.name}
-                        (${item.diameter})`
+                        (${item.model})`
                 }
             />
         );
 
         const detailsInfo = (
             <DetailsInfo
-                category='planets'
-                getDetailedData={this.swapi.getPlanet}
-                id={this.state.selectedPlanet}
-                detailList={this.detailPlanetList}
+                category='starships'
+                getDetailedData={this.swapi.getShip}
+                id={this.state.selectedShip}
+                detailList={this.detailShipList}
             />
         );
 
         return (
-            <div className="PlanetPage">
+            <div className="StarshipsPage">
                 <Row left={itemsList} right={detailsInfo} />
             </div>
         )
