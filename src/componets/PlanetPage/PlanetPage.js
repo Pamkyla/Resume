@@ -34,15 +34,15 @@ export default class PlanetPage extends React.Component {
         return (
             <>
                 <li>
-                    <span>diameter</span>
+                    <span>diameter:</span>
                     <span>{diameter}</span>
                 </li>
                 <li>
-                    <span>population</span>
+                    <span>population:</span>
                     <span>{population}</span>
                 </li>
                 <li>
-                    <span>gravity</span>
+                    <span>gravity:</span>
                     <span>{gravity}</span>
                 </li>
             </>
@@ -60,7 +60,7 @@ export default class PlanetPage extends React.Component {
                 onItemClick={this.onPlanetSelect}
                 renderItem={(item) =>
                     `${item.name}
-                        (${item.diameter})`
+                        (${item.climate})`
                 }
             />
         );

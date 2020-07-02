@@ -2,13 +2,14 @@ import React from 'react';
 
 import './ErrorComponent.css';
 
-import errorIcon from './star-wars.png';
+import errorIcon from './droid.svg';
 
 const ErrorComponent = () => {
     return (
         <div className="ErrorComponent">
             <img src={errorIcon} alt="error icon" />
-            <p>Resistance will be destroyed</p>
+            <p>Something's gone wrong. Best Empire’s techniques are already working on this problem</p>
+            
         </div>
     );
 }

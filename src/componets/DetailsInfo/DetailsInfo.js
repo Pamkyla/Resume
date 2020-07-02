@@ -10,7 +10,7 @@ export default class DetailsInfo extends React.Component {
     static contextType = SwapiContext;
 
     state = {
-        person: null,
+        item: null,
     }
     
     componentDidMount() {
@@ -30,16 +30,16 @@ export default class DetailsInfo extends React.Component {
             return;
         }
         
-        getDetailedData(id).then((person => {
-            this.setState({ person })
+        getDetailedData(id).then((item => {
+            this.setState({ item })
         }));
     }
 
     render() {
-        if (!this.state.person) {
-            return <p>please, select person</p>
+        if (!this.state.item) {
+            return <p>please, select item</p>
         }
-        const { id, name, mass, birthDate, gender, diameter, population, gravity, cost, crew, hyperdrive } = this.state.person;
+        const { id, name, mass, birthDate, height, diameter, population, gravity, speed, crew, hyperdrive } = this.state.item;
         
         const { category, detailList } = this.props;
         
@@ -48,9 +48,9 @@ export default class DetailsInfo extends React.Component {
             <div className="DetailsInfo">
                 <h3>{name}</h3>
                 <div className="d-flex info_block">
-                    <img src={`https://starwars-visualguide.com/assets/img/${category}/${id}.jpg`} alt="person" />
+                    <img src={`https://starwars-visualguide.com/assets/img/${category}/${id}.jpg`} alt="item" />
                     <ul className="detail_info_block">
-                        {detailList(mass||diameter||cost, birthDate||population||crew, gender||gravity||hyperdrive)}
+                        {detailList(mass||diameter||speed, birthDate||population||crew, height||gravity||hyperdrive)}
                     </ul>
                 </div>
                 <ErrorTest />

@@ -5,7 +5,7 @@ import './RandomPlanet.css';
 import Loader from '../Loader';
 import ErrorComponent from '../ErrorComponent'
 
-export default class RandomPlanet extends React.Component{
+export default class RandomPlanet extends React.Component {
 
     swapi = new SwapiService();
 
@@ -17,14 +17,13 @@ export default class RandomPlanet extends React.Component{
 
     componentDidMount() {
         this.updatePlanet();
-       this.interval = setInterval(this.updatePlanet, 5000);
+        this.interval = setInterval(this.updatePlanet, 10000);
     }
 
     componentWillUnmount() {
         clearInterval(this.interval);
     }
 
-    componentDidCatch 
 
     onError = () => {
         this.setState({
@@ -41,10 +40,14 @@ export default class RandomPlanet extends React.Component{
     }
 
     updatePlanet = () => {
-        let id = Math.round(Math.random()*25);
-        if (id===0) {
-            id++;
-        }
+        let id = Math.round(Math.random()*19);
+        let blockList = [0,1];
+        
+        blockList.forEach(item => {
+            if(id === item){
+                id++;
+            }});
+
         this.swapi.getPlanet(id)
             .then(this.onPlanetLoaded)
             .catch(this.onError);
@@ -68,29 +71,33 @@ export default class RandomPlanet extends React.Component{
     }
 }
 
+
+
 const PlanetView = (props) => {
     const { id, name, diameter, population, gravity } = props.planet;
+
     return (
         <>
             <h3>{name}</h3>
             <div className="d-flex planet_block">
-                <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="planet"/>
+                <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="planet" />
+
                 <ul className="planet_info_block">
                     <li>
-                        <span>diameter</span>
+                        <span>diameter:</span>
                         <span>{diameter}</span>
                     </li>
                     <li>
-                        <span>population</span>
+                        <span>population:</span>
                         <span>{population}</span>
                     </li>
                     <li>
-                        <span>gravity</span>
+                        <span>gravity:</span>
                         <span>{gravity}</span>
                     </li>
                 </ul>
             </div>
         </>
-        
+
     );
 }

@@ -26,21 +26,21 @@ export default class PeoplePage extends React.Component {
         });
     }
 
-    detailPeopleList = (mass, birthDate, gender) => {
+    detailPeopleList = (mass, birthDate, height) => {
 
         return (
             <>
                 <li>
-                    <span>mass</span>
-                    <span>{mass}</span>
+                    <span>mass:</span>
+                    <span>{mass} kg</span>
                 </li>
                 <li>
-                    <span>birth date</span>
+                    <span>birth date:</span>
                     <span>{birthDate}</span>
                 </li>
                 <li>
-                    <span>gender</span>
-                    <span>{gender}</span>
+                    <span>height:</span>
+                    <span>{height} cm</span>
                 </li>
             </>
         )
@@ -57,7 +57,7 @@ export default class PeoplePage extends React.Component {
                 onItemClick={this.onPersonSelect}
                 renderItem={(item) =>
                     `${item.name}
-                        (${item.gender}, ${item.mass}kg)`
+                        (${item.gender})`
                 }
             />
         );

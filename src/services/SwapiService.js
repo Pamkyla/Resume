@@ -48,7 +48,7 @@ export default class SwapiService {
         return {
             id: this.getId(ship),
             name: ship.name,
-            cost: ship.cost_in_credits,
+            speed: ship.max_atmosphering_speed,
             crew: ship.crew,
             hyperdrive: ship.hyperdrive_rating,
             model: ship.model
@@ -62,6 +62,7 @@ export default class SwapiService {
             diameter: planet.diameter,
             population: planet.population,
             gravity: planet.gravity,
+            climate: planet.climate
         }
     }
 
@@ -72,6 +73,7 @@ export default class SwapiService {
             gender: person.gender,
             mass: person.mass,
             birthDate: person.birth_year,
+            height: person.height
         }
     }
 }

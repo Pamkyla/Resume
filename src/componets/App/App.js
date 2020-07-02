@@ -8,7 +8,7 @@ import RandomPlanet from '../RandomPlanet';
 import ErrorTest from '../ErrorTest';
 import ErrorComponent from '../ErrorComponent';
 import PeoplePage from '../PeoplePage';
-import StarshipPage from '../StarShipPage';
+import StarshipPage from '../StarshipPage';
 import SwapiService from '../../services/SwapiService';
 import PlanetPage from '../PlanetPage';
 import SwapiContext from '../SwapiServiceContext';
@@ -56,7 +56,7 @@ export default class App extends React.Component {
                         <RandomPlanet />
                         <ErrorTest />
                         <Route path="/" exact>
-                            <h3>Welcome to the rise field...</h3>
+                            <h3>A long time ago in a galaxy far, far away....</h3>
                         </Route>
                         <Route path="/people/">
                             <h3>People</h3>

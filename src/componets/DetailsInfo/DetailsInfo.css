@@ -15,3 +15,7 @@
     padding-left: 15px;
     list-style: none;
 }
+
+.DetailsInfo .detail_info_block li span {
+    margin-right: 10px;
+}

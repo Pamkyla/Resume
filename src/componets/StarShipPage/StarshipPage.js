@@ -29,20 +29,20 @@ export default class StarshipPage extends React.Component {
         });
     }
 
-    detailShipList = (cost, crew, hyperdrive) => {
+    detailShipList = (speed, crew, hyperdrive) => {
 
         return (
             <>
                 <li>
-                    <span>cost in credits</span>
-                    <span>{cost}</span>
+                    <span>max atm speed:</span>
+                    <span>{speed}</span>
                 </li>
                 <li>
-                    <span>crew</span>
+                    <span>crew:</span>
                     <span>{crew}</span>
                 </li>
                 <li>
-                    <span>hyperdrive rating</span>
+                    <span>hyperdrive rating:</span>
                     <span>{hyperdrive}</span>
                 </li>
             </>
