@@ -13,6 +13,7 @@ import SwapiService from '../../services/SwapiService';
 import PlanetPage from '../PlanetPage';
 import SwapiContext from '../SwapiServiceContext';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import MainPage from '../MainPage';
 
 /* 
 context - <del> proprty drill </del>.
@@ -57,6 +58,7 @@ export default class App extends React.Component {
                         <ErrorTest />
                         <Route path="/" exact>
                             <h3>A long time ago in a galaxy far, far away....</h3>
+                            <MainPage />
                         </Route>
                         <Route path="/people/">
                             <h3>People</h3>

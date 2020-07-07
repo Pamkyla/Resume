@@ -1,0 +1,40 @@
+.stories_block {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 35px;
+}
+
+.story {
+    margin-bottom: 35px;
+    max-width: 350px;
+}
+
+.story h3 {
+    color: white;
+}
+
+.story_text {
+    max-height: 200px;
+    max-width: 400px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.story_text:hover .text{
+    cursor: grab;
+    transform: translateY(-200px);
+}
+
+.story_text:not(:last-child){
+    margin-right: 200px;
+}
+
+.text {
+    display: block;
+    transition: 15s;
+    color: orange;
+}
+
