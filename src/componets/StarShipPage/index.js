@@ -1,3 +1,3 @@
-import StarshipPage from './StarshipPage';
+import StarShipPage from './StarShipPage';
 
-export default StarshipPage;
+export default StarShipPage;

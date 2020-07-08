@@ -2,13 +2,13 @@ import React from 'react';
 
 import ItemsList from '../ItemsList';
 import DetailsInfo from '../DetailsInfo';
-import './StarshipPage.css';
+import './StarShipPage.css';
 import ErrorComponent from '../ErrorComponent';
 import SwapiService from '../../services/SwapiService';
 import Row from '../Row';
 
 
-export default class StarshipPage extends React.Component {
+export default class StarShipPage extends React.Component {
 
     swapi = new SwapiService();
     

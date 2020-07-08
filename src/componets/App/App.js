@@ -8,7 +8,7 @@ import RandomPlanet from '../RandomPlanet';
 import ErrorTest from '../ErrorTest';
 import ErrorComponent from '../ErrorComponent';
 import PeoplePage from '../PeoplePage';
-import StarshipPage from '../StarshipPage';
+import StarShipPage from '../StarShipPage';
 import SwapiService from '../../services/SwapiService';
 import PlanetPage from '../PlanetPage';
 import SwapiContext from '../SwapiServiceContext';
@@ -70,7 +70,7 @@ export default class App extends React.Component {
                         </Route>
                         <Route path="/ships/">
                             <h3>Starships</h3>
-                            <StarshipPage />
+                            <StarShipPage />
                         </Route>
                     </div>
                 </Router>
