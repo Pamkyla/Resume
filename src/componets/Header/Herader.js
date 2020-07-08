@@ -14,11 +14,11 @@ const Header = () => {
                 </li>
 
                 <li>
-                    <Link to="/Planets">Planets</Link>
+                    <Link to="/planets">Planets</Link>
                 </li>
 
                 <li>
-                    <Link to="/Ships">StarShips</Link>
+                    <Link to="/ships">StarShips</Link>
                 </li>
             </ul>
         </div>

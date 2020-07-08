@@ -14,16 +14,6 @@ import SwapiContext from '../SwapiServiceContext';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import MainPage from '../MainPage';
 
-/* 
-context - <del> proprty drill </del>.
-
-1. Provider - setup
-2. Consumer - count
-
-Roating - переключение между виртуальными страницами приложениъэъ
-*/
-
-
 export default class App extends React.Component {
 
     swapi = new SwapiService();

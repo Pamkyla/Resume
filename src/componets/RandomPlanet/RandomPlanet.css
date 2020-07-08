@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
 
 .RandomPlanet {
-    background-color: #464646;
     padding: 15px;   
     font-family: 'Electrolize', sans-serif;
 }
 
 .RandomPlanet .planet_block img{
     width: 30%;
+    border-radius: 50%;
 }
 
 .RandomPlanet .planet_block .planet_info_block {

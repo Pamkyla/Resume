@@ -11,7 +11,7 @@ import Row from '../Row';
 export default class StarShipPage extends React.Component {
 
     swapi = new SwapiService();
-    
+
     state = {
         selectedShip: null,
         error: false,
@@ -19,8 +19,8 @@ export default class StarShipPage extends React.Component {
 
     componentDidCatch() {
         this.setState({ error: true });
-        
-        
+
+
     }
 
     onShipSelect = (id) => {

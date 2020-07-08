@@ -4,10 +4,6 @@ import './ItemsList.css';
 
 import Loader from '../Loader';
 
-
-
-
-
 class ItemsList extends React.Component{
     
     state = {
