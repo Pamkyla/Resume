@@ -5,7 +5,6 @@ import './App.css';
 
 import Header from '../Header';
 import RandomPlanet from '../RandomPlanet';
-import ErrorTest from '../ErrorTest';
 import ErrorComponent from '../ErrorComponent';
 import PeoplePage from '../PeoplePage';
 import StarShipPage from '../StarShipPage';
@@ -55,7 +54,6 @@ export default class App extends React.Component {
                     <div className="App">
                         <Header />
                         <RandomPlanet />
-                        <ErrorTest />
                         <Route path="/" exact>
                             <h3>A long time ago in a galaxy far, far away....</h3>
                             <MainPage />

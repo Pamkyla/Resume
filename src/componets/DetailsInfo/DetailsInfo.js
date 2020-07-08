@@ -1,7 +1,6 @@
 import React from 'react';
 
 import './DetailsInfo.css';
-import ErrorTest from '../ErrorTest';
 import SwapiContext from '../SwapiServiceContext';
 
 
@@ -53,7 +52,6 @@ export default class DetailsInfo extends React.Component {
                         {detailList(mass||diameter||speed, birthDate||population||crew, height||gravity||hyperdrive)}
                     </ul>
                 </div>
-                <ErrorTest />
             </div>
     
         );
