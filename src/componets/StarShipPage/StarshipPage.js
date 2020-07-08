@@ -75,7 +75,7 @@ export default class StarshipPage extends React.Component {
         );
 
         return (
-            <div className="StarshipsPage">
+            <div className="StarshipPage">
                 <Row left={itemsList} right={detailsInfo} />
             </div>
         )
