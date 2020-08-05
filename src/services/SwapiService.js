@@ -8,7 +8,6 @@ export default class SwapiService {
         if (!response.ok) {
             throw new Error(`we have a problem with fetch ${url}`);
         }
-
         return await response.json();
     }
 

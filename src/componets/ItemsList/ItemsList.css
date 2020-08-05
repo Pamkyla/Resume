@@ -1,11 +1,16 @@
 .ItemsList {
-    background-color: #464646;
     padding: 15px;
     margin: 0;
     list-style: none;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+
+}
+
+.ItemsList .list-group-item {
+    border-radius: 50px;
+    margin-bottom: 5px;
 }
 
 .Item:hover {
